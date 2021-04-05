@@ -41,7 +41,7 @@ main {
 .menu ul li {
   padding: 0.5em 1em 0.5em 3em;
   font-size: 0.95em;
-  font-weight: regular;
+  font-weight: 400;
   background-repeat: no-repeat;
   background-position: left 15px center;
   background-size: auto 20px;

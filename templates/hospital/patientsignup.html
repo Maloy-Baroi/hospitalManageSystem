@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>LazyCoder || sumit</title>
+    <title>DocTor's Care</title>
     <style type="text/css">
         body {
             color: #aa082e;
@@ -78,6 +78,9 @@
                             {% render_field userForm.username class="form-control" placeholder="Username" %}
                         </div>
                         <div class="form-group">
+                            {% render_field userForm.email class="form-control" placeholder="Write Your Email" %}
+                        </div>
+                        <div class="form-group">
                             {% render_field patientForm.address class="form-control" placeholder="Address" %}
                         </div>
                         <div class="form-group">
@@ -92,10 +95,13 @@
                             {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
                         </div>
                         <div class="form-group">
-                            {% render_field userForm.password class="form-control" placeholder="Password" %}
+                            {% render_field userForm.password1 class="form-control" placeholder="Password" %}
                         </div>
                         <div class="form-group">
-                            {% render_field patientForm.mobile class="form-control" pattern="[6789][0-9]{9}" placeholder="Mobile Number" %}
+                            {% render_field userForm.password2 class="form-control" placeholder="Repeat-Password" %}
+                        </div>
+                        <div class="form-group">
+                            {% render_field patientForm.mobile class="form-control" placeholder="Mobile Number" %}
                         </div>
                         <div class="form-group">
                             {% render_field patientForm.assignedDoctorId class="form-control" placeholder="Doctor" %}
@@ -104,7 +110,11 @@
                     </div>
                 </div>
                 <button type="submit" class="btnSubmit">Register</button>
-                <div class="text-center">Already have an account? <a href="patientlogin">Login here</a></div>
+                <div class="text-center">Already have an account?
+                    <a href="{% url 'App_main:patient-login' %}">
+                        Login here
+                    </a>
+                </div>
             </div>
         </div>
     </div>

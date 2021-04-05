@@ -1,6 +1,6 @@
 from django.core.validators import RegexValidator
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, User
 from django.utils.translation import gettext_lazy as _
 
 departments = [('Cardiologist', 'Cardiologist'),
@@ -11,13 +11,14 @@ departments = [('Cardiologist', 'Cardiologist'),
                ('Colon and Rectal Surgeons', 'Colon and Rectal Surgeons')
                ]
 
+phone_regex = RegexValidator(regex=r"^\+?(88)01[3-9][0-9]{8}$", message=_(
+    "Enter a valid Bangladesh mobile phone number starting with +(country code)"))
+
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='doctor')
     profile_pic = models.ImageField(upload_to='profile_pic/DoctorProfilePic/', null=True, blank=True)
     address = models.CharField(max_length=40)
-    phone_regex = RegexValidator(regex=r"^\+?(88)01[3-9][0-9]{8}$", message=_(
-        "Enter a valid Bangladesh mobile phone number starting with +(country code)"))
     mobile = models.CharField(validators=[phone_regex], verbose_name=_("Mobile phone"), max_length=17,
                               blank=False, null=True)
     department = models.CharField(max_length=50, choices=departments, default='Cardiologist')
@@ -36,11 +37,9 @@ class Doctor(models.Model):
 
 
 class Patient(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='patient')
     profile_pic = models.ImageField(upload_to='profile_pic/PatientProfilePic/', null=True, blank=True)
     address = models.CharField(max_length=40)
-    phone_regex = RegexValidator(regex=r"^\+?(88)01[3-9][0-9]{8}$", message=_(
-        "Enter a valid Bangladesh mobile phone number starting with +(country code)"))
     mobile = models.CharField(validators=[phone_regex], verbose_name=_("Mobile phone"), max_length=17,
                               blank=False, null=True)
     symptoms = models.CharField(max_length=100, null=False)
@@ -75,22 +74,20 @@ class PatientDischargeDetails(models.Model):
     patientName = models.CharField(max_length=40)
     assignedDoctorName = models.CharField(max_length=40)
     address = models.CharField(max_length=40)
-    phone_regex = RegexValidator(regex=r"^\+?(88)01[3-9][0-9]{8}$", message=_(
-        "Enter a valid Bangladesh mobile phone number starting with +(country code)"))
     mobile = models.CharField(validators=[phone_regex], verbose_name=_("Mobile phone"), max_length=17,
                               blank=False, null=True)
     symptoms = models.CharField(max_length=100, null=True)
-
     admitDate = models.DateField(null=False)
     releaseDate = models.DateField(null=False)
     daySpent = models.PositiveIntegerField(null=False)
-
     roomCharge = models.PositiveIntegerField(null=False)
     medicineCost = models.PositiveIntegerField(null=False)
     doctorFee = models.PositiveIntegerField(null=False)
     OtherCharge = models.PositiveIntegerField(null=False)
     total = models.PositiveIntegerField(null=False)
 
-# Developed By : sumit kumar
-# facebook : fb.com/sumit.luv
-# Youtube :youtube.com/lazycoders
+
+class FeedBack(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    message = models.TextField()

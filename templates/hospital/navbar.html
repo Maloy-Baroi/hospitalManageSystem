@@ -1,58 +1,52 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <style type="text/css">
-    .bs-example {
-      margin: 0px;
+    <style type="text/css">
+        .bs-example {
+            margin: 0;
+        }
 
-    }
+        .navbar-brand {
+            font-size: 20px;
+            font-family: sans-serif;
 
-    .navbar-brand {
-      font-size: 20px;
-      font-family: sans-serif;
-
-    }
-  </style>
+        }
+    </style>
+    <title>DocTor's Care</title>
 </head>
-
 <body>
 
 
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background:#e2e1e1;">
+        <a href="/" class="navbar-brand">HMS (DocTor's Care)</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <div class="bs-example">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#337AB7;">
-      <a href="/" class="navbar-brand">Hospital Management</a>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <div class="collapse navbar-collapse justify-content-between pl-3 pr-3" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
 
-      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-        <div class="navbar-nav">
+                <a href="{% url 'App_main:admin-click' %}" class="nav-item nav-link">Admin</a>
+                <a href="{% url 'App_main:doctor-click' %}" class="nav-item nav-link">Doctor</a>
+                <a href="{% url 'App_main:patient-click' %}" class="nav-item nav-link">Patient</a>
+            </div>
 
-          <a href="/adminclick" class="nav-item nav-link">Admin</a>
-          <a href="/doctorclick" class="nav-item nav-link">Doctor</a>
-          <a href="/patientclick" class="nav-item nav-link">Patient</a>
-
-
+            <div class="navbar-nav">
+                <a href="{% url 'App_main:about-us' %}" class="nav-item nav-link">About Us</a>
+                <a href="{% url 'App_main:contact-us' %}" class="nav-item nav-link">Contact Us</a>
+            </div>
         </div>
-
-        <div class="navbar-nav">
-          <a href="/aboutus" class="nav-item nav-link">About Us</a>
-          <a href="/contactus" class="nav-item nav-link">Contact Us</a>
-        </div>
-
-      </div>
     </nav>
-  </div>
+</div>
 </body>
 
 </html>
